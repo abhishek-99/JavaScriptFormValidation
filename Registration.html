@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+
+	<style type="text/css">
+fieldset {
+	border: 2px skyblue solid;
+	border-radius: 40px;
+	background-image: url("pen-checkbox-128.png");
+	background-position: right;
+	background-repeat: no-repeat;
+	background-position: 35sem;
+}
+
+div {
+	padding-bottom: 20px;
+	padding-right: 10px;
+}
+
+em {
+	color: red;
+}
+
+input[type="text"] {
+	border: solid yellow;
+	margin-right: 40em;
+}
+
+input[type="date"] {
+	border: solid yellow;
+	margin-right: 40em;
+	margin-top: 1em;
+}
+
+input[type="password"] {
+	border: solid yellow;
+	margin-right: 40em;
+}
+
+input[type="Radio"] {
+	float: left;
+	display: inline-block;
+	margin-left: 5em;
+	vertical-align: 5em;
+}
+
+select {
+	border: solid yellow;
+	margin-right: 45em;
+}
+
+label {
+	color: blue;
+	line-height: 1.0;
+	float: left;
+	width: 10em;
+	margin-left: 20em;
+	vertical-align: middle;
+	text-align: right;
+}
+</style>
+
+	<div align=center>
+		<form id="my_form" method="post" onsubmit="return myvalidation(this);"action="#">
+			<fieldset>
+				<legend>Registration Form</legend>
+				<div style="position:">
+					<label for="name">Name <em>*</em></label> <input type="text" id="usrname"
+						name="usrname" min="4" required="required">
+				</div>
+				<div>
+					<label for="password">Password<em>*</em></label> <input
+						type="password" name="usrpass" min="5" required="required">
+				</div>
+				<div>
+					<label for="Reenter">ReTypePassword<em>*</em></label> <input
+						type="password" name="pass" min="5" required="required">
+				</div>
+				<div>
+					<label for="Email">Email</label> <input type="text" name="Email">
+				</div>
+				<div>
+					<label for="Gender">Gender</label> <input type="radio"
+						name="gender" value="Male"> <label for="male"
+						style="margin-left: 0em; text-align: left;">Male</label> <input
+						type="radio" name="gender" value="female"
+						style="margin-left: -8em"> <label for="female"
+						style="margin-left: -5em; text-align: left;">Female</label>
+				</div>
+				<div>
+					<label for="birthday" style="margin-top: 1em;">Date of
+						Birth</label> <input type="date" name="dob"></input>
+				</div>
+				<div>
+					<label for="country">Country</label> <select>
+						<option value="usa">U.S.A</option>
+						<option value="india">INDIA</option>
+						<option value="uk">U.k</option>
+						<option value="france">France</option>
+						<option value="china">China</option>
+					</select>
+				</div>
+				<div>
+					<input type="submit" value="Submmit" >
+
+				</div>
+				
+			</fieldset>
+		</form>
+			<div>
+				<p id="errors"></p>
+				</div>
+
+	</div>
+	<p id="demo"></p>
+	<script type="text/javascript">
+	function myvalidation(form)
+	{
+	var errmsg='';
+	//var passmsg='';
+	var name=form.usrname.value;
+	var password=form.usrpass.value;
+	var confirmpass=form.pass.value;
+	var email=form.Email.value;
+	var dateofbirth=form.dob.value;
+	var todaydate= new Date();
+	var year=dateofbirth.substring(0,4);
+	var month=dateofbirth.substring(5,7);
+	var date=dateofbirth.substring(8,11);
+	var sysyear=todaydate.getFullYear();
+	var sysmonth=todaydate.getMonth()+1;
+	var sysdate=todaydate.getDate();
+	//var date_regex=/(0[1-9]|1[012])[- \/.](0[1-9]|[12][0-9]|3[01])[- \/.](19|20)\d\d/ ;
+	//alert(dateofbirth);
+//	alert('year is'+year);	
+	//alert(''+month);
+	//alert(''+date);
+	//window.alert("Hi");
+	//alert(name.length);
+	//document.getElementById('errors').innerHTML=year;
+	if(name.length<4)
+		{
+			errmsg+="*Name must be more than 4 characters.\n"
+			//document.getElementById('usrname').innerHTML=errmsg;	
+			//alert(errmsg);	
+		}
+	if(password.length<5)
+		{
+			errmsg+="*Password must be more than 5 characters.\n"
+	//	document.getElementById('errors').innerHTML=errmsg;	
+				//alert(errmsg);
+		}
+	 if(confirmpass!=password)
+		{
+			errmsg+="*password must be match.\n"
+			//alert(errmsg);
+		}
+	var atposition=email.indexOf("@");
+	var dotposition=email.lastIndexOf(".");
+    if(atposition<1||dotposition<atposition+2||dotposition+2>=email.length)
+		{
+			errmsg+="*enter a valid Email\n";
+			//alert(errmsg)
+		}
+    //window.location="#";
+    if(year>sysyear||month>sysmonth||date>sysdate)
+    	{
+    	
+		errmsg+="*enter a valid Date of birth";    	
+    	}
+if(errmsg!="")
+	{
+		alert(errmsg);
+		return false;
+	}
+else
+	return true;
+}
+
+
+
+</script>
+
+
+</body>
+</html>
